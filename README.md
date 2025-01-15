@@ -201,3 +201,7 @@ While testing, we aimed to cover the most critical aspects of functionality, foc
 - Duarte Pombo -> 33.33%
 
 In short, all members contributed in various fields of the project, having also shared feedback and offered help among each other and during every part of the process.
+
+```
+Final Grade : 17.7
+```
