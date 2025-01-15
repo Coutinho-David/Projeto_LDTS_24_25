@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'info.solidsoft.pitest' version '1.15.0'
+    id 'jacoco'
+}
+
+pitest {
+    targetClasses = ['pt.up.fe.controller.game.ArenaController', 'pt.up.fe.gui.LanternaGUI', 'pt.up.fe.model.Position', 'pt.up.fe.model.game.Stats', 'pt.up.fe.model.game.elements.Ball','pt.up.fe.model.game.elements.Player', 'pt.up.fe.model.game.elements.PowerUpFactory', 'pt.up.fe.model.menu.EndMenu', 'pt.up.fe.model.menu.Menu', 'pt.up.fe.controller.menu.*', 'pt.up.fe.viewer.*']
+    targetTests = ['pt.up.fe.controller.*Test', 'pt.up.fe.gui.GuiTest', 'pt.up.fe.model.*Test', 'pt.up.fe.viewer.*Test']
+    mutationThreshold = 0
+    verbose = true
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+}
+
+application {
+    mainClass.set("pt.up.fe.Application")
+}
+
+group = 'pt.up.fe'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.mockito:mockito-core:3.7.7'
+    implementation group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.1.1'
+    testImplementation 'org.pitest:pitest-junit5-plugin:1.0.0'
+}
+
+test {
+    useJUnitPlatform()
+}
